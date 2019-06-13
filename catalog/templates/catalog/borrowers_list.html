@@ -1,0 +1,27 @@
+{% extends 'catalog/base_generic.html' %}
+
+{% block title %}
+    <title>Местная библиотека | Список заёмщиков</title>
+{% endblock title %}
+
+{% block content %}
+    <h1> Список выданных книг</h1>
+
+    {% if bookinstance_list %}
+    <ul>
+
+      {% for bookinst in bookinstance_list %} 
+      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }}) - {{bookinst.borrower}}  
+        <br>
+        <a href="{% url 'renew-book-librarian' bookinst.id %}" class="adm">Обновить дату возврата</a>    
+        <hr>
+      </li>
+      {% endfor %}
+    </ul>
+
+    {% else %}
+      <p>There are no books borrowed.</p>
+    {% endif %}       
+    
+{% endblock content %}

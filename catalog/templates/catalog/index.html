@@ -1,0 +1,25 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block title %}
+    <title>Местная Библиотека</title>
+{% endblock %}
+
+{% block content %}
+<h1>Домашняя Страница Местной Библиотеки</h1>
+
+  <p>Добро пожаловать в <em>LocalLibrary</em>, самый базовый вебсайт на Django, разработанный в качестве руководства в Mozilla Developer Network.</p>
+
+<h2>Динамический контент</h2>
+
+  <p>Библиотека содержит:</p>
+  <ul>
+    <li><strong>Книг:</strong> {{ num_books }}</li>
+    <ul>
+      <li><strong>Копий:</strong> {{ num_instances }}</li>
+      <li><strong>Доступных копий:</strong> {{ num_instances_available }}</li>
+    </ul>
+    <li><strong>Авторов:</strong> {{ num_authors }}</li>
+    <li><strong>Жанров:</strong> {{ num_genres }}</li>
+  </ul>
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

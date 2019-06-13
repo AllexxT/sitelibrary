@@ -1,0 +1,19 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+    <h1>Автор книг: {{ author.first_name }}, {{ author.last_name }}</h1>
+    <a href="{% url 'author_update' author.pk %}" class="adm">Редактировать</a>
+    {% with birth=author.date_of_birth death=author.date_of_death %}
+        <p>{% if birth %} {{birth}} -{% endif %} {% if death %} {{death}} {% endif %}</p>
+    {% endwith %}
+
+    {% for book in author.book_set.all %}
+    <ul>
+        <li><h3><a href="{{ book.get_absolute_url }}">{{ book }}</a></h3></li>
+        <li><p>Жанр: {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p></li>
+        <li><p><strong>Подробности:</strong> {{ book.summary }}</p></li>
+        <hr>
+    </ul>
+    {% endfor %}
+{% endblock %}
+

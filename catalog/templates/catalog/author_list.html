@@ -1,0 +1,28 @@
+{% extends "catalog/base_generic.html" %}
+
+{% block content %}
+    <h1>Список Авторов</h1>
+
+    {% if perms.catalog.can_see_borrowed %}
+      <a href="{% url 'author_create' %}" class="adm">Создать автора</a>
+      <br><br>
+    {% endif %}
+
+    {% if author_list %}
+    <ul>
+
+      {% for author in author_list %}
+      <li>
+        <a href="{{ author.get_absolute_url }}">{{ author.first_name }} ({% if author.date_of_birth %} {{author.date_of_birth}} - {{author.date_of_death}} {% else %} Неизвестно {% endif %})</a>
+        {% if perms.catalog.can_see_borrowed %}
+          <a href="{% url 'author_update' author.pk %}" class="adm">ред.</a> |
+          <a href="{% url 'author_delete' author.pk%}" class="adm">удалить</a>
+        {% endif %}
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>Нет авторов в библиотеке.</p>
+    {% endif %}       
+{% endblock %}

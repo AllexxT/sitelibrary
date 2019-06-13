@@ -1,0 +1,27 @@
+body {
+    background-color: rgba(228, 246, 252, 0.897);
+}
+
+.sidebar-nav {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.adm,
+.adm > a,
+.adm > p,
+.adm > li > a {
+    color: green;
+}
+
+/* hr {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #EEEEEE -moz-use-text-color #FFFFFF;
+    border-style: solid none;
+    border-width: 1px 0;
+    margin: 18px 0;
+  } */
