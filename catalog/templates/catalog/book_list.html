@@ -3,12 +3,21 @@
 {% block content %}
     <h1>Список Книг</h1>
 
+    {% if perms.catalog.can_see_borrowed %}
+      <a href="{% url 'book_create' %}" class="adm">Добавить книгу</a>
+      <br><br>
+    {% endif %}
+
     {% if book_list %}
     <ul>
 
       {% for book in book_list %}
       <li>
         <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> <a href="{% url 'author-detail' book.author.pk %}">({{book.author}})</a> 
+        {% if perms.catalog.can_see_borrowed %}
+          <a href="{% url 'book_update' book.pk %}" class="adm">ред.</a> |
+          <a href="{% url 'book_delete' book.pk%}" class="adm">удалить</a>
+        {% endif %}
       </li>
       {% endfor %}
 

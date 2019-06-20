@@ -25,7 +25,7 @@ SECRET_KEY = 'wu6qj@_mj2$*tsq8x(c4b6g663^hz2vruf8g51l@c35ert)jgb'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.106"]
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.106", 'sanya92t.pythonanywhere.com', 'localhost']
 
 
 # Application definition
@@ -52,10 +52,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'locallibrary.urls'
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['./templates',],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

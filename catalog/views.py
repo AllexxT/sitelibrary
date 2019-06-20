@@ -48,7 +48,7 @@ def index(request):
 
 class BookListView(generic.ListView):
     model = Book
-    paginate_by = 4
+    paginate_by = 5
 
 
 class BookDetailView(generic.DetailView):
@@ -112,7 +112,7 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
 
-#######################################
+######################################
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -133,3 +133,20 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
     permission_required = 'catalog.can_see_borrowed'
     model = Author
     success_url = reverse_lazy('authors')
+
+####################
+# Book Create Update Delete
+from .models import Book
+
+class BookCreate(CreateView):
+    model = Book
+    fields = '__all__'
+    initial={'date_of_death':'12/10/2016',}
+
+class BookUpdate(UpdateView):
+    model = Book
+    fields = '__all__'
+
+class BookDelete(DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')
