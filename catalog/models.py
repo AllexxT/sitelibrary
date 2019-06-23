@@ -31,6 +31,10 @@ class Book(models.Model):
     genre = models.ManyToManyField(Genre, help_text="Select a genre for this book")
     # ManyToManyField used because genre can contain many books. Books can cover many genres.
     # Genre class has already been defined so we can specify the object above.
+
+    class Meta:
+        ordering = ['-id']
+
     def display_genre(self):
         """
         Creates a string for the Genre. This is required to display genre in Admin.
@@ -100,6 +104,9 @@ class Author(models.Model):
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
+
+    class Meta:
+        ordering = ['-id']
     
     def get_absolute_url(self):
         """
