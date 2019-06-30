@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 from django.conf.urls import url
 
@@ -29,4 +29,17 @@ urlpatterns += [
     url(r'^book/create/$', views.BookCreate.as_view(), name='book_create'),
     url(r'^book/(?P<pk>\d+)/update/$', views.BookUpdate.as_view(), name='book_update'),
     url(r'^book/(?P<pk>\d+)/delete/$', views.BookDelete.as_view(), name='book_delete'),
+]
+
+#Rest framework
+
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', views.AuthorViewSet)
+router.register(r'bookes', views.BookViewSet)
+
+urlpatterns += [
+    url(r'^', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

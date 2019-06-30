@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wu6qj@_mj2$*tsq8x(c4b6g663^hz2
 #DEBUG = True
 DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
 
-ALLOWED_HOSTS = ["127.0.0.1", "192.168.0.106", 'sanya92t.pythonanywhere.com', 'localhost' ,'allexx92t.herokuapp.com']
+ALLOWED_HOSTS = ['0.0.0.0', "127.0.0.1", "192.168.0.106", 'sanya92t.pythonanywhere.com', 'localhost' ,'allexx92t.herokuapp.com']
 
 
 # Application definition
@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'catalog',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,7 @@ STATIC_URL = '/static/'
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+#rest Framework
+
