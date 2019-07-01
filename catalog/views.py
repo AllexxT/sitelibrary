@@ -136,6 +136,7 @@ class AuthorDelete(PermissionRequiredMixin, DeleteView):
 
 ####################
 # Book Create Update Delete
+####################
 from .models import Book
 
 class BookCreate(CreateView):
