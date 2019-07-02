@@ -10,6 +10,7 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         fields = ( 'author', 'first_name', 'last_name', 'title', 'summary', 'isbn',)
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+    books = serializers.CharField()
     class Meta:
         model = Author
-        fields = ('first_name', 'last_name', 'date_of_birth', 'date_of_death')
+        fields = ( 'first_name', 'last_name', 'date_of_birth', 'date_of_death', 'id', 'books',)

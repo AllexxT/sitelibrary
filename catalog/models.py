@@ -107,7 +107,13 @@ class Author(models.Model):
 
     class Meta:
         ordering = ['-id']
-    
+
+    def books(self):
+        books = []
+        for x in self.book_set.all():
+            books.append(str(x))
+        return books
+
     def get_absolute_url(self):
         """
         Returns the url to access a particular author instance.
