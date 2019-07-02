@@ -2,9 +2,23 @@ from django.urls import path, include
 from . import views
 from django.conf.urls import url
 
+#Rest framework
+
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'users', views.AuthorViewSet)
+router.register(r'bookes', views.BookViewSet)
 
 urlpatterns = [
-    path('', views.index, name='index'),
+    path('', views.index, name='index'),   #here for showing "index" page as main page
+    url(r'^', include(router.urls)),        #showing API page as main if first in list
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+]
+
+
+urlpatterns += [
+    
     path('books/', views.BookListView.as_view(), name='books'),
     path('book/<int:pk>', views.BookDetailView.as_view(), name='book-detail'),
     path('authors/', views.AuthorListView.as_view(), name='authors'),
@@ -31,15 +45,3 @@ urlpatterns += [
     url(r'^book/(?P<pk>\d+)/delete/$', views.BookDelete.as_view(), name='book_delete'),
 ]
 
-#Rest framework
-
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register(r'users', views.AuthorViewSet)
-router.register(r'bookes', views.BookViewSet)
-
-urlpatterns += [
-    url(r'^', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-]
